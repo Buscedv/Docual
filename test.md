@@ -1,3 +1,5 @@
+# Hi
+
 First Header | Second Header
 ------------ | -------------
 Content cell 1 | Content cell 2
