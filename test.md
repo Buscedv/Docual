@@ -20,3 +20,6 @@ text
 
 > I’ve always been more interested
 > in the future than in the past.
+
+- [x] this is a complete item
+- [ ] this is an incomplete item
