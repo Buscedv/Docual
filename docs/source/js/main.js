@@ -6,8 +6,10 @@ let app = new Vue({
 		first_click: false,
 		section_links: [],
 		github_link: 'https://github.com/Docual/Docual',
-		readme_link: 'https://raw.githubusercontent.com/Docual/Docual/master/README.md',
+		readme_link: 'https://raw.githubusercontent.com/Enkelt/Enkelt/master/README.md',
 		sidenav_width_perc: '20%',
+		results: [],
+		search: '',
 	},
 	created: function() {
 		window.addEventListener("resize", this.sidebarController);
@@ -38,11 +40,11 @@ let app = new Vue({
 				this.closeAll();
 			} else {
 				this.first_click = false;
-				document.getElementById("searchnav").style.width = "0";
+				document.getElementById("search_nav").style.width = "0";
 				document.getElementById("sidenav").style.width = this.sidenav_width_perc;
 				document.getElementById("sidenav").style.paddingRight = "60px";
 				document.getElementById("sidenav").style.visibility = "visible";
-				document.getElementById("searchnav").style.paddingRight = "0";
+				document.getElementById("search_nav").style.paddingRight = "0";
 				if (this.getWidth() < 850) {
 					document.getElementsByClassName("sidebar-overlay")[0].style.left = "0";
 				}
@@ -55,9 +57,9 @@ let app = new Vue({
 				this.closeAll();
 			} else {
 				document.getElementById("sidenav").style.width = "0";
-				document.getElementById("searchnav").style.width = this.sidenav_width_perc;
-				document.getElementById("searchnav").style.paddingRight = "60px";
-				document.getElementById("searchnav").style.visibility = "visible";
+				document.getElementById("search_nav").style.width = this.sidenav_width_perc;
+				document.getElementById("search_nav").style.paddingRight = "60px";
+				document.getElementById("search_nav").style.visibility = "visible";
 				document.getElementById("sidenav").style.paddingRight = "0";
 
 				document.getElementById("search-box").focus();
@@ -69,24 +71,24 @@ let app = new Vue({
 			}
 		},
 		closeAll: function() {
-			document.getElementById("searchnav").style.width = "0";
+			document.getElementById("search_nav").style.width = "0";
 			document.getElementById("sidenav").style.width = "0";
 			document.getElementsByClassName("sidebar-overlay")[0].style.left = "-100%";
-			document.getElementById("searchnav").style.paddingRight = "0";
+			document.getElementById("search_nav").style.paddingRight = "0";
 			document.getElementById("sidenav").style.paddingRight = "0";
-			document.getElementById("searchnav").style.visibility = "hidden";
+			document.getElementById("search_nav").style.visibility = "hidden";
 			document.getElementById("sidenav").style.visibility = "hidden";
 			this.is_sidenav_open = false;
 			this.is_search_open = false;
 		},
 		closeSearch: function() {
 			this.is_search_open = false;
-			document.getElementById("searchnav").style.width = "0";
+			document.getElementById("search_nav").style.width = "0";
 			document.getElementById("sidenav").style.width = this.sidenav_width_perc;
 			document.getElementById("sidenav").style.paddingRight = "60px";
 			document.getElementById("sidenav").style.visibility = "visible";
-			document.getElementById("searchnav").style.paddingRight = "0";
-			document.getElementById("searchnav").style.visibility = "hidden";
+			document.getElementById("search_nav").style.paddingRight = "0";
+			document.getElementById("search_nav").style.visibility = "hidden";
 			this.is_sidenav_open = true;
 		},
 		getWidth: function()  {
@@ -116,7 +118,9 @@ let app = new Vue({
 
 			for (i = 0; i < descendents.length; i++) {
 				if ($(descendents[i]).is('h1')) {
-					sections.push({title: descendents[i].textContent, link: "#"+descendents[i].id});
+					sections.push({title: descendents[i].textContent, link: "#"+descendents[i].id, subs: [], contents: []});
+				} else if ($(descendents[i]).is('h2')) {
+					sections[sections.length-1].subs.push({title: descendents[i].textContent, link: "#"+descendents[i].id});
 				} else if ($(descendents[i]).is('p') && descendents[i].textContent.substring(0, 4) === '/i/ ') {
 					let annotation = document.createElement('div');
 					annotation.setAttribute("class", "callout");
@@ -135,10 +139,30 @@ let app = new Vue({
 					parentDiv.insertBefore(annotation, node);
 					node.parentNode.removeChild(ancestor.childNodes[i+2]);
 
-				}
+					sections[sections.length-1].contents.push(descendents[i].innerHTML)
 
+				} else {
+					sections[sections.length-1].contents.push(descendents[i].innerHTML)
+				}
 			}
 			this.section_links = sections;
 		}
 	},
+	computed: {
+		filtered_results: function() {
+			let i;
+			let results = [];
+			for (i = 0; i < this.section_links.length; i++) {
+				let data = "";
+				let x;
+				for (x = 0; x < this.section_links[i].contents.length; x++) {
+					data = data + this.section_links[i].contents[x];
+				}
+				if (String(data).toLowerCase().includes(this.search.toLowerCase()) && this.search !== "") {
+					results.push({section: this.section_links[i], data: data});
+				}
+			}
+			return results;
+		}
+	}
 });

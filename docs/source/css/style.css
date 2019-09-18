@@ -7,10 +7,6 @@
     --very-light: #fefefe;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #fdfdfd;
@@ -116,7 +112,7 @@ nav img {
     width: 0px;
 }
 
-#searchnav {
+#search_nav {
     left: 0;
     width: 0px;
     padding-right: 0;
@@ -133,30 +129,17 @@ nav img {
     margin-left: 10px;
 }
 
-#side-credits {
-    color: var(--medium);
-    background-color: #ddd;
-    width: 40%;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 0.8em;
-    cursor: pointer;
-    height: 40px;
-    position: absolute;
-    text-align: center;
-    bottom: 7%;
-    left: 30%;
-    right: 30%;
-}
-
-#side-credits mark {
-    background-color: #ddd;
+.sidenav_home {
     font-weight: bold;
-    color: var(--accent);
+    background-color: var(--accent) !important;
+    border-radius: 10px;
+    width: 20%;
+    color: #fff !important;
+    text-align: center;
 }
 
-#side-credits:hover mark {
-    color: var(--medium);
+.sidenav_home:hover {
+    color: var(--light) !important;
 }
 
 .sidenav .active {
@@ -167,6 +150,16 @@ nav img {
 .sidenav a:not(.not_section):hover {
     color: var(--accent);
     background-color: var(--light);
+}
+
+.sidenav_link_top {
+    border-left: 1px solid var(--accent);
+}
+
+.sidenav_link_sub {
+    margin-left: 40px !important;
+    color: var(--medium-two) !important;
+    font-size: 15px !important;
 }
 
 .nav-btn {
@@ -227,7 +220,11 @@ nav img {
     margin-top: 10px;
 }
 
-#search-result-area {
+#search_nav a {
+    border-left: 1px solid var(--accent);
+}
+
+#no-search-result-area {
     height: 100%;
     width: 100%;
     text-align: center;
@@ -376,6 +373,10 @@ nav img {
     line-height: 1.5;
     font-size: 18px;
     list-style-type: none;
+}
+
+#content ul li *, #content ol li * {
+    display: inline;
 }
 
 #content a {
