@@ -19,9 +19,9 @@
 
 		<!-- JS -->
 		<!-- development version, includes helpful console warnings -->
-		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
 		<!-- production version, optimized for size and speed -->
-		<!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+		 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
 		<script src="js/table-extension-1.0.1/src/showdown-table.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -58,7 +58,7 @@
 			<div id="sidenav" class="sidenav">
 				<div class="sidebar-content">
 					<a class="search_btn not_section" @click="openSearch()"><em class="fas fa-search"></em></a>
-					<a href="#app" class="active smooth-goto sidenav_home">Home</a>
+					<a href="#app" class="active smooth-goto sidenav_home not_section">Home</a>
 					<div v-for="link in section_links" v-if="link.subs != []">
 						<a :href="link.link" v-text="link.title" class="smooth-goto sidenav_link_top"></a>
 						<div v-for="sub_link in link.subs">
@@ -86,18 +86,7 @@
 		<!-- JS -->
 		<script src="js/main.js"></script>
 		<script src="js/prism.js" crossorigin="anonymous"></script>
-		<script>
-			$('.smooth-goto').on('click', function() {
-				let actives = document.getElementsByClassName('active');
-				let i;
-				for (i = 0; i < actives.length; i++) {
-					actives[i].classList.toggle('active');
-				}
-				this.classList.toggle('active');
-				$('html, body').animate({scrollTop: $(this.hash).offset().top - 80}, 1000);
-				return false;
-			});
-		</script>
+		<script src="js/smooth_scroll.js"></script>
 	</body>
 
 </html>

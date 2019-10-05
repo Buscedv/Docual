@@ -7,6 +7,10 @@
     --very-light: #fefefe;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #fdfdfd;
@@ -157,9 +161,9 @@ nav img {
 }
 
 .sidenav_link_sub {
-    margin-left: 40px !important;
+    margin-left: 30px !important;
     color: var(--medium-two) !important;
-    font-size: 15px !important;
+    font-size: 16px !important;
 }
 
 .nav-btn {
@@ -458,6 +462,13 @@ nav img {
         max-width: 90%;
         padding: 10px;
     }
+
+}
+
+@media screen and (max-width: 500px) {
+    .sidenav_home {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 350px) {
@@ -467,9 +478,9 @@ nav img {
 }
 
 @media screen and (max-height: 855px) {
-   #side-credits {
-       bottom: 13%;
-   }
+    #side-credits {
+        bottom: 13%;
+    }
 }
 
 @media screen and (max-height: 480px) {

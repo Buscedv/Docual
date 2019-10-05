@@ -19,6 +19,20 @@ let app = new Vue({
 			this.first_click= true;
 		}
 		this.fetch_data();
+
+		if (this.getWidth() <= 850) {
+			this.closeAll();
+			this.sidenav_width_perc = '50%';
+			if (this.getWidth() <= 500) {
+				this.sidenav_width_perc = '70%';
+			}
+		}
+		else {
+			this.sidenav_width_perc = '20%';
+			if (!this.is_sidenav_open && !this.is_search_open) {
+				this.openNav();
+			}
+		}
 	},
 	destroyed() {
 		window.removeEventListener("resize", this.sidebarController);
@@ -26,9 +40,14 @@ let app = new Vue({
 	methods: {
 		sidebarController: function(e) {
 			if (this.getWidth() <= 850) {
-				this.closeAll()
+				this.closeAll();
 				this.sidenav_width_perc = '50%';
-			} else {
+				if (this.getWidth() <= 500) {
+					this.closeAll();
+					this.sidenav_width_perc = '60%';
+				}
+			}
+			else {
 				this.sidenav_width_perc = '20%';
 				if (!this.is_sidenav_open && !this.is_search_open) {
 					this.openNav();
