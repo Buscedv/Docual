@@ -156,7 +156,7 @@ nav img {
     background-color: var(--light);
 }
 
-.sidenav_link_top {
+.sidenav_link_top{
     border-left: 1px solid var(--accent);
 }
 
@@ -224,7 +224,7 @@ nav img {
     margin-top: 10px;
 }
 
-#search_nav a {
+#search_nav a:not(.search_btn) {
     border-left: 1px solid var(--accent);
 }
 
