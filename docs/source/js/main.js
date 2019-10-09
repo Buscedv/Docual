@@ -125,6 +125,10 @@ let app = new Vue({
 			Httpreq.send(null);
 			let source = Httpreq.responseText;
 
+			if (this.readme_link === '') {
+				source = '<h1>Setup Required</h1><p>This page has not been properly set up.</p>';
+			}
+
 			let converter = new showdown.Converter({tables: 'true', tasklists: 'true', strikethrough: 'true'}),
 					html      = converter.makeHtml(source);
 			document.getElementById('content').innerHTML = html;
