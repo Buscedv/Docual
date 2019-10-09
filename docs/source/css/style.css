@@ -109,6 +109,7 @@ nav img {
 .sidebar-content {
     margin-top: 40px;
     margin-left: 10px;
+    overflow: hidden;
 }
 
 #sidenav {

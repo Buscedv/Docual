@@ -82,8 +82,6 @@ let app = new Vue({
 				document.getElementById("search_nav").style.paddingRight = "60px";
 				document.getElementById("search_nav").style.visibility = "visible";
 				document.getElementById("sidenav").style.paddingRight = "0";
-
-				document.getElementById("search-box").focus();
 				if (this.getWidth() < 850) {
 					document.getElementsByClassName("sidebar-overlay")[0].style.left = "0";
 				}
@@ -178,6 +176,7 @@ let app = new Vue({
 
 			this.readme_link = tmp_data.markdown_file_url;
 			this.github_link = tmp_data.github_project_link;
+			document.title = tmp_data.title;
 		}
 	},
 	computed: {
