@@ -5,16 +5,18 @@ let app = new Vue({
 		is_search_open: false,
 		first_click: false,
 		section_links: [],
-		github_link: 'https://github.com/Docual/Docual',
-		readme_link: 'https://raw.githubusercontent.com/Enkelt/Enkelt/master/README.md',
+		github_link: '',
+		readme_link: '',
 		sidenav_width_perc: '20%',
 		results: [],
 		search: '',
 	},
 	created: function() {
+		this.get_set_data();
+		
 		window.addEventListener("resize", this.sidebarController);
 		if (this.getWidth() > 850) {
-			this.openNav()
+			this.openNav();
 		} else {
 			this.first_click= true;
 		}
@@ -165,6 +167,17 @@ let app = new Vue({
 				}
 			}
 			this.section_links = sections;
+		},
+		get_set_data: function () {
+			let Httpreq = new XMLHttpRequest(); // a new request
+			Httpreq.open("GET",'config.json',false);
+			Httpreq.send(null);
+			let tmp_data = Httpreq.responseText;
+
+			tmp_data = JSON.parse(tmp_data);
+
+			this.readme_link = tmp_data.markdown_file_url;
+			this.github_link = tmp_data.github_project_link;
 		}
 	},
 	computed: {
