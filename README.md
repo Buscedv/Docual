@@ -23,9 +23,9 @@ ___
 
 # Contact
 
-- [https://github.com/Docual](GitHub)
-- [mailto:docual@edvard.io](Email)
+- [GitHub](https://github.com/Docual)
+- [Email](mailto:docual@edvard.io)
 
 ___
 
-Edvard Busck-Nielsen, Docual 2019 - This page is powered by [https://docual.edvard.io](Docual) & GitHub Pages.
+Edvard Busck-Nielsen, Docual 2019 - This page is powered by [Docual](https://docual.edvard.io) & GitHub Pages.
