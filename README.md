@@ -1,2 +1,31 @@
 # Docual
-Docual is a tool that aims to replace you README with a nicer looking alternative. Docual uses your README as the source for a static website you can host anywhere (but we recommend that you use GitHub-pages for this). 
+___
+
+## What is Docual?
+## Use cases
+## Examples
+
+___
+
+# Get Started
+## Download
+## Setup
+## Launch!
+
+___
+
+# Modifying your site
+## Images
+## Colours
+## Other
+
+___
+
+# Contact
+
+- [https://github.com/Docual](GitHub)
+- [mailto:docual@edvard.io](Email)
+
+___
+
+Edvard Busck-Nielsen, Docual 2019 - This page is powered by [https://docual.edvard.io](Docual) & GitHub Pages.
