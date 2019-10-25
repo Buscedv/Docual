@@ -88,7 +88,7 @@ nav img {
     left: -100%;
     position: fixed;
     width: 100%;
-    z-index: 1;
+    z-index: 0;
     top: 0;
 }
 
@@ -215,13 +215,12 @@ nav img {
     right: 60px;
 }
 
-#search-box {
+.search-box {
     border: none;
     outline-color: var(--light);
     background-color: var(--light);
     font-size: 1.4em;
     margin-left: 20px;
-    width: 100%;
     padding: 10px;
     margin-top: 10px;
 }
@@ -230,7 +229,7 @@ nav img {
     border-left: 1px solid var(--accent);
 }
 
-#no-search-result-area {
+.no-search-result-area {
     height: 100%;
     width: 100%;
     text-align: center;
@@ -240,7 +239,7 @@ nav img {
     padding: 20px;
 }
 
-#no-search-results-image {
+.no-search-results-image {
     max-width: 70px;
     margin-top: 40%;
 }
@@ -249,7 +248,7 @@ nav img {
 
 #content {
     padding: 20px 20px 20px 100px;
-    margin-top: 80px;
+    margin-top: 40px;
     max-width: 60%;
     margin-left: 20%;
     margin-right: auto;
@@ -469,7 +468,7 @@ nav img {
 
 @media screen and (max-width: 500px) {
     .sidenav_home {
-        width: 100%;
+        width: 50%;
     }
 }
 

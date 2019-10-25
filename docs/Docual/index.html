@@ -10,42 +10,33 @@
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
 
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 	</head>
 	<body>
 		<img id="header_background" src="assets/img/header.jpg" alt="Docual">
 		<div class="header_container">
 			<nav>
 				<div class="logo_area">
-					<img src="assets/img/banner.png" alt="Docual">
+					<a href="#"><img src="assets/img/banner.png" alt="Docual"></a>
 				</div>
 				<ul class="nav_links">
 					<li class="nav_link"><a href="#">Home</a></li>
 					<li class="nav_link"><a href="#features">Features</a></li>
-					<li class="nav_link"><a href="#contact">Contact</a></li>
 					<li class="nav_link nav_line"></li>
 					<li class="nav_link"><a href="#">Docs</a></li>
-					<li class="nav_link nav_btn  btn"><a href="#get-started">Get Started</a></li>
+					<li class="nav_link nav_btn  main_btn"><a href="#get-started">Get Started</a></li>
 				</ul>
 			</nav>
-			<header>
-				<h1>Self-hosted Documentation</h1>
-				<h2>Convert your GitHub repository's README into a powerful documentation website.</h2>
-				<a class="header_btn btn" href="#get-started">Get Started</a>
+			<header class="row">
+				<div class="col-sm-12 col-md-6">
+					<h1>Self-Hosted Modern Docs<mark>.</mark></h1>
+				</div>
+				<div class="col-sm-12 col-md-6">
+					<a class="docual_btn" href="#">Download</a>
+				</div>
 			</header>
-		</div>
-		<div id="get-started">
-			<h2>Get Started</h2>
-			<p>Description</p>
-			<form>
-				<input type="url" id="get_started_input">
-				<button class="btn btn-get-started">Start</button>
-			</form>
-		</div>
-		<div id="about">
-			<h2>About</h2>
-		</div>
-		<div id="features">
-			<h2>Features</h2>
 		</div>
 	</body>
 </html>

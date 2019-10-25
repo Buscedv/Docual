@@ -3,7 +3,7 @@
 	<head>
 		<title></title>
 		<meta name="description" content="">
-		<meta name="author" content="">
+		<meta name="author" content="Edvard Busck-Nielsen">
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -22,10 +22,13 @@
 		<!-- development version, includes helpful console warnings -->
 		<!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
 		<!-- production version, optimized for size and speed -->
-		 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+		<!-- CND JS -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
 		<script src="js/table-extension-1.0.1/src/showdown-table.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 	</head>
 	<body>
 		<div id="app">
@@ -38,7 +41,7 @@
 				</div>
 				<div id="nav-search-area">
 					<a class="search_btn nav-btn in_nav" @click="openSearch()"><em class="fas fa-search"></em></a>
-					<a class="github-btn nav_btn in_nav" :href="github_link" target="blank"><em class="fab fa-github"></em></a>
+					<a class="github-btn nav_btn in_nav" :href="githubLink" target="blank"><em class="fab fa-github"></em></a>
 				</div>
 			</nav>
 
@@ -52,7 +55,7 @@
 				<div class="sidebar-content">
 					<a class="search_btn not_section" @click="openSearch()"><em class="fas fa-search"></em></a>
 					<a href="#app" class="active smooth-goto sidenav_home not_section">Home</a>
-					<div v-for="link in section_links" v-if="link.subs != []">
+					<div v-for="link in sectionLinks" v-if="link.subs != []">
 						<a :href="link.link" v-text="link.title" class="smooth-goto sidenav_link_top"></a>
 						<div v-for="sub_link in link.subs">
 							<a :href="sub_link.link" v-text="sub_link.title" class="smooth-goto sidenav_link_sub"></a>
@@ -61,15 +64,16 @@
 					<div style="margin-top: 100px"></div>
 				</div>
 			</div>
+
 			<div id="search_nav" class="sidenav">
 				<div class="sidebar-content">
 					<a @click="closeSearch()" class="search_btn not_section"><em class="fas fa-arrow-left"></em></a>
-					<input type="text" id="search-box" v-model="search">
-					<div v-for="result in filtered_results">
+					<input type="text" class="search-box" v-model="search" placeholder="Search...">
+					<div v-for="result in filteredResults">
 						<a :href="result.section.link" class="smooth-goto sidenav_link_top"  v-text="result.section.title" ></a>
 					</div>
-					<div id="no-search-result-area">
-						<img src="assets/img/no_results.png" alt="No results" id="no-search-results-image">
+					<div class="no-search-result-area">
+						<img src="assets/img/no_results.png" alt="No results" class="no-search-results-image">
 					</div>
 				</div>
 			</div>
