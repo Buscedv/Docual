@@ -158,7 +158,7 @@
 
     #content h1 {
         margin-top: 40px;
-        font-size: 2.4em;
+        font-size: 2.5em;
         border-bottom: 2px solid var(--light);
     }
 
@@ -315,27 +315,25 @@
     }
 
     #content table {
-        color: var(--dark);
         width: 85%;
         border-collapse: collapse; border-spacing: 0;
     }
 
     #content td, th {
-        border: 1px solid var(--almost-dark);
+        border: 1px solid var(--light-dark);
+        border-radius: 5px;
         height: 35px;
     }
 
     #content th {
-        background: var(--medium-two);
         font-weight: bold;
         padding: 10px;
-        color: var(--light);
     }
 
     #content td {
-        background: var(--light);
         text-align: center;
         padding: 10px;
+        background-color: var(--light);
     }
 
     @media screen and (max-width: 500px) {

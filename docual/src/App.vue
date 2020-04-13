@@ -21,7 +21,7 @@
         --light: #eff2f5;
         --dark: #2f2f2f;
         --almost-dark: #3f3f3f;
-        --light-dark: #444;
+        --light-dark: #666;
         --accent: #5A8CFF;
         --accent-hover: #497BEE;
         --white: #fff;

@@ -9,13 +9,17 @@
             <div class="sidebar-items" v-if="!isSearch">
                 <a class="sidebar-link">Link 1</a>
                 <a class="sidebar-link">Link 1</a>
-                <a class="sidebar-link sidebar-link-sub">Sub link 1</a>
-                <a class="sidebar-link sidebar-link-sub">Sub link 1</a>
-                <a class="sidebar-link sidebar-link-sub">Sub link 1</a>
+                <div class="sidebar-link sidebar-sub-items">
+                    <a class="sidebar-link sidebar-link-sub">Sub link 1</a>
+                    <a class="sidebar-link sidebar-link-sub">Sub link 1</a>
+                    <a class="sidebar-link sidebar-link-sub">Sub link 1</a>
+                </div>
                 <a class="sidebar-link">Link 1</a>
                 <a class="sidebar-link">Link 1</a>
-                <a class="sidebar-link sidebar-link-sub">Sub link 1</a>
-                <a class="sidebar-link sidebar-link-sub">Sub link 1</a>
+                <div class="sidebar-link sidebar-sub-items">
+                    <a class="sidebar-link sidebar-link-sub">Sub link 1</a>
+                    <a class="sidebar-link sidebar-link-sub">Sub link 1</a>
+                </div>
             </div>
             <div class="sidebar-search" v-if="isSearch">
                 <input type="text" placeholder="Search..." v-model="search">
@@ -86,7 +90,7 @@
         color: var(--dark);
         margin-top: 8px;
         margin-bottom: 8px;
-        width: 100%;
+        width: 90%;
         float: left;
         border-left: 2px solid var(--accent);
         padding-left: 8px;
@@ -94,17 +98,22 @@
         padding-bottom: 6px;
     }
 
-    .sidebar-link:hover {
+    .sidebar-link:hover:not(.sidebar-sub-items) {
         color: var(--accent);
         cursor: pointer;
         background-color: var(--light-hover);
+        border-left: 2px solid var(--accent);
+    }
+
+    .sidebar-sub-items {
+        margin-left: 8px;
+        border-color: var(--light-hover);
     }
 
     .sidebar-link-sub {
-        border: none;
+        border-color: var(--light);
         font-size: 1em;
         font-family: 'Roboto Light', sans-serif;
-        margin-left: 8px;
         color: var(--almost-dark);
     }
 
