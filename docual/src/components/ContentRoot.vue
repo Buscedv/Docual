@@ -2,10 +2,10 @@
     <main>
         <div class="row">
             <div class="col-md-3 col-xs-7" v-if="sidebarStatus" id="sidebar">
-                <Sidebar></Sidebar>
+                <Sidebar :links="links"></Sidebar>
             </div>
             <div class="col-md-9" :class="(!sidebarStatus) ? 'col-xs-12' :  (!isMobile) ? 'col-xs-5' : 'col-xs-5 fade'" id="doc-area" @click="docClicked()">
-                <Doc></Doc>
+                <Doc @sidebarLinks="sidebarLinks"></Doc>
             </div>
         </div>
     </main>
@@ -19,9 +19,12 @@
         components: {Doc, Sidebar},
         props: ['sidebarStatus'],
         methods: {
+            sidebarLinks(links) {
+                this.links = links;
+            },
             docClicked() {
                 if (this.sidebarStatus && this.isMobile) {
-                    this.sidebarStatus = false;
+                    this.$emit('changeSidebarStatus', false)
                 }
             },
             checkWindowSize() {
@@ -35,6 +38,7 @@
         data() {
             return {
                 isMobile: false,
+                links: [],
             }
         },
         mounted() {
@@ -54,6 +58,16 @@
 
     #doc-area {
         overflow-x: hidden;
+        max-width: available;
+        height: 100%;
+        padding-right: 80px;
+    }
+
+    #sidebar {
+        overflow-x: hidden;
+        max-width: available;
+        height: 100%;
+        padding: 0;
     }
 
     .fade {

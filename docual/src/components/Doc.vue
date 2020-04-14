@@ -1,145 +1,88 @@
 <template>
     <main>
         <div id="content">
-            <h1>Header</h1>
-            <h2>Header</h2>
-            <h3>Header</h3>
-            <h4>Header</h4>
-            <h5>Header</h5>
-            <h6>Header</h6>
-            <p>Paragraph</p>
-            <a href="#">Link</a>
-            <blockquote>
-                block quote
-            </blockquote>
-            <code>
-                code
-                code
-                code
-            </code>
-            <ul>
-                <li>ul li 1</li>
-                <li>ul li 2</li>
-            </ul>
-            <ol>
-                <li>ol li 1</li>
-                <li>ol li 2</li>
-            </ol>
-            <pre>
-                <code>lol in code</code>
-            </pre>
-            <table>
-                <tr>
-                    <th>th1</th>
-                    <th>th2</th>
-                    <th>th3</th>
-                </tr>
-                <tr>
-                    <td>td</td>
-                    <td>td</td>
-                    <td>td</td>
-                </tr>
-                <tr>
-                    <td>td</td>
-                    <td>td</td>
-                    <td>td</td>
-                </tr>
-            </table>
-            <h1>Header</h1>
-            <h2>Header</h2>
-            <h3>Header</h3>
-            <h4>Header</h4>
-            <h5>Header</h5>
-            <h6>Header</h6>
-            <p>Paragraph</p>
-            <a href="#">Link</a>
-            <blockquote>
-                block quote
-            </blockquote>
-            <code>
-                code
-                code
-                code
-            </code>
-            <ul>
-                <li>ul li 1</li>
-                <li>ul li 2</li>
-            </ul>
-            <ol>
-                <li>ol li 1</li>
-                <li>ol li 2</li>
-            </ol>
-            <pre>
-                <code>lol in code</code>
-            </pre>
-            <table>
-                <tr>
-                    <th>th1</th>
-                    <th>th2</th>
-                    <th>th3</th>
-                </tr>
-                <tr>
-                    <td>td</td>
-                    <td>td</td>
-                    <td>td</td>
-                </tr>
-                <tr>
-                    <td>td</td>
-                    <td>td</td>
-                    <td>td</td>
-                </tr>
-            </table>
-            <h1>Header</h1>
-            <h2>Header</h2>
-            <h3>Header</h3>
-            <h4>Header</h4>
-            <h5>Header</h5>
-            <h6>Header</h6>
-            <p>Paragraph</p>
-            <a href="#">Link</a>
-            <blockquote>
-                block quote
-            </blockquote>
-            <code>
-                code
-                code
-                code
-            </code>
-            <ul>
-                <li>ul li 1</li>
-                <li>ul li 2</li>
-            </ul>
-            <ol>
-                <li>ol li 1</li>
-                <li>ol li 2</li>
-            </ol>
-            <pre>
-                <code>lol in code</code>
-            </pre>
-            <table>
-                <tr>
-                    <th>th1</th>
-                    <th>th2</th>
-                    <th>th3</th>
-                </tr>
-                <tr>
-                    <td>td</td>
-                    <td>td</td>
-                    <td>td</td>
-                </tr>
-                <tr>
-                    <td>td</td>
-                    <td>td</td>
-                    <td>td</td>
-                </tr>
-            </table>
+            <div v-for="(elem, index) in doc" :key="index" v-html="elem.outerHTML"></div>
         </div>
+        <div class="meta" id="raw"></div>
+        <div class="meta" id="sidebar-links"></div>
     </main>
 </template>
 
 <script>
+    import configFile from '../assets/config.json';
+
     export default {
         name: 'Doc',
+        data() {
+            return {
+                config: {},
+                doc: [],
+                sidebarLinks: [],
+            }
+        },
+        async mounted() {
+            this.loadConfig();
+            this.fetchData();
+        },
+        methods: {
+            loadConfig() {
+                this.config = configFile;
+            },
+            fetchData: function () {
+                let comp = this;
+                let xhr = new XMLHttpRequest();
+                const url = this.config.readmeLink;
+                xhr.open("GET", url, true);
+                xhr.onreadystatechange = function () {
+                    if (this.readyState === XMLHttpRequest.DONE) {
+                        if (this.status === 200) {
+                            comp.getContent(this.responseText);
+                        } else {
+                            comp.markdown = '# 404 - Not Found';
+                        }
+                    }
+                };
+                xhr.send();
+            },
+            getContent(markdown) {
+                const showdown  = require('showdown'),
+                    converter = new showdown.Converter();
+                const html =  converter.makeHtml(markdown);
+
+                const raw = document.querySelector('#raw');
+
+                raw.innerHTML = html;
+
+                for (let node_i = 0; node_i < raw.childNodes.length; node_i++) {
+                    const node = raw.childNodes[node_i];
+                    if (node.nodeName !== '#text') {
+                        if (node.textContent.substr(0, 4) === '/i/ ') {
+                            let tmp = document.createElement('DIV');
+
+                            tmp.classList.add('callout');
+                            tmp.innerHTML = '<em class="callout-icon fas fa-info"></em>' +
+                                '<p>' +
+                                node.textContent.substr(4, node.textContent.length - 4) +
+                                '</p>';
+
+                            this.doc.push(tmp);
+
+                        } else if (node.nodeName === 'H1' || node.nodeName === 'H2') {
+                            this.sidebarLinks.push({
+                                title: node.textContent,
+                                link: '#' + node.id,
+                                type: node.nodeName,
+                            });
+                            this.doc.push(node);
+                        } else {
+                            this.doc.push(node);
+                        }
+                    }
+                }
+
+                this.$emit('sidebarLinks', this.sidebarLinks)
+            },
+        },
     }
 </script>
 
@@ -147,9 +90,18 @@
     main {
         width: 100%;
         padding: 70px;
-        overflow-y: scroll;
+        height: 100%;
+        padding-bottom: 0;
     }
 
+    @media screen and (max-width: 500px) {
+        main {
+            padding: 30px;
+        }
+    }
+</style>
+
+<style>
     /* CONTENT */
     #content {
         padding-top: 10px;
@@ -203,9 +155,12 @@
         font-size: 22px;
         display: flex;
         border-radius: 5px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        width: 85%;
     }
 
-    #content .callout em {
+    #content .callout .callout-icon {
         padding: 5px;
         height: 20px;
         width: 20px;
@@ -221,7 +176,8 @@
 
     #content .callout p {
         float: left;
-        margin-left: 2px;
+        margin-left: 12px;
+        color: var(--medium-two);
     }
 
     #content pre {
@@ -336,11 +292,11 @@
         background-color: var(--light);
     }
 
-    @media screen and (max-width: 500px) {
-        main {
-            padding: 30px;
-        }
+    .meta {
+        display: none;
+    }
 
+    @media screen and (max-width: 500px) {
         #content {
             padding-top: 30px;
         }

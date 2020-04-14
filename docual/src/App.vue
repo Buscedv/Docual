@@ -30,10 +30,6 @@
         --light-hover: rgba(224, 230, 235, 0.4);
     }
 
-    html {
-        scroll-behavior: smooth;
-    }
-
     body {
         font-family: 'Roboto', sans-serif;
         padding: 0;
@@ -51,6 +47,11 @@
     * {
         box-shadow: none !important;
         outline: none !important;
+        scroll-behavior: smooth;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0;
     }
 
     /** {*/

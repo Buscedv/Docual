@@ -12,9 +12,11 @@
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/vue-fontawesome": "^0.1.9",
     "core-js": "^3.6.4",
+    "showdown": "^1.9.1",
     "vue": "^2.6.11"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
     "@vue/cli-plugin-babel": "^4.3.0",
     "@vue/cli-plugin-eslint": "^4.3.0",
     "@vue/cli-service": "^4.3.0",

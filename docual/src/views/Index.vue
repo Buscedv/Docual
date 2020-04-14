@@ -1,7 +1,7 @@
 <template>
     <main class="container-fluid">
         <Navbar @toggle-sidebar="sidebarStatus = !sidebarStatus"></Navbar>
-        <ContentRoot :sidebarStatus="sidebarStatus"></ContentRoot>
+        <ContentRoot :sidebarStatus="sidebarStatus" @changeSidebarStatus="changeSidebarStatus"></ContentRoot>
     </main>
 </template>
 
@@ -30,7 +30,10 @@
                 } else {
                     this.sidebarStatus = true;
                 }
-            }
+            },
+            changeSidebarStatus(status) {
+                this.sidebarStatus = status;
+            },
         },
     }
 </script>

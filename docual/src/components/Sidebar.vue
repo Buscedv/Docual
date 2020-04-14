@@ -7,19 +7,12 @@
                 <a class="sidebar-btn">Home</a>
             </div>
             <div class="sidebar-items" v-if="!isSearch">
-                <a class="sidebar-link">Link 1</a>
-                <a class="sidebar-link">Link 1</a>
-                <div class="sidebar-link sidebar-sub-items">
-                    <a class="sidebar-link sidebar-link-sub">Sub link 1</a>
-                    <a class="sidebar-link sidebar-link-sub">Sub link 1</a>
-                    <a class="sidebar-link sidebar-link-sub">Sub link 1</a>
-                </div>
-                <a class="sidebar-link">Link 1</a>
-                <a class="sidebar-link">Link 1</a>
-                <div class="sidebar-link sidebar-sub-items">
-                    <a class="sidebar-link sidebar-link-sub">Sub link 1</a>
-                    <a class="sidebar-link sidebar-link-sub">Sub link 1</a>
-                </div>
+                <span v-for="(link, index) in links" :key="index" class="sidebar-item">
+                    <a class="sidebar-link" @click="smoothScroll(link.link)" v-text="link.title" v-if="link.type === 'H1'"></a>
+                    <div class="sidebar-link sidebar-sub-items" v-else>
+                        <a class="sidebar-link sidebar-link-sub" @click="smoothScroll(link.link)" v-text="link.title"></a>
+                    </div>
+                </span>
             </div>
             <div class="sidebar-search" v-if="isSearch">
                 <input type="text" placeholder="Search..." v-model="search">
@@ -38,32 +31,45 @@
 <script>
     export default {
         name: 'Sidebar',
+        props: ['links'],
         data() {
             return {
                 isSearch: false,
                 search: '',
             }
         },
+        methods: {
+            smoothScroll(id) {
+                document.querySelector(id).scrollIntoView({block: 'center'})
+            },
+        },
     }
 </script>
 
 <style scoped>
     aside {
-        margin-top: 70px;
         height: 100%;
-        width: 100%;
-        padding: 1px;
         background-color: var(--light);
+        position: fixed;
+        width: inherit;
+        max-width: inherit;
     }
 
     .sidebar {
-        height: 100%;
         max-width: 100%;
         border-right: 2px solid var(--light);
-        padding: 20px;
+        padding: 25px;
+        overflow-y: auto;
+        height: inherit;
+    }
+
+    .sidebar-items, .sidebar-sub-items {
+        height: fit-content;
+        margin-bottom: 25px !important;
     }
 
     .header {
+        margin-top: 70px;
         padding-top: 30px;
         width: 100%;
         margin-bottom: 20px;
@@ -88,14 +94,13 @@
     .sidebar-link {
         font-size: 1.1em;
         color: var(--dark);
-        margin-top: 8px;
-        margin-bottom: 8px;
         width: 90%;
         float: left;
         border-left: 2px solid var(--accent);
         padding-left: 8px;
         padding-top: 6px;
         padding-bottom: 6px;
+        text-decoration: none;
     }
 
     .sidebar-link:hover:not(.sidebar-sub-items) {
