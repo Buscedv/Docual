@@ -53,6 +53,8 @@
 
                 raw.innerHTML = html;
 
+                let tmpText = '';
+
                 for (let node_i = 0; node_i < raw.childNodes.length; node_i++) {
                     const node = raw.childNodes[node_i];
                     if (node.nodeName !== '#text') {
@@ -72,10 +74,18 @@
                                 title: node.textContent,
                                 link: '#' + node.id,
                                 type: node.nodeName,
+                                text: '',
                             });
+
+                            if (this.sidebarLinks.length >= 2) {
+                                this.sidebarLinks[this.sidebarLinks.length - 2].text = tmpText;
+                                tmpText = '';
+                            }
+
                             this.doc.push(node);
                         } else {
                             this.doc.push(node);
+                            tmpText = node.textContent;
                         }
                     }
                 }
@@ -104,8 +114,10 @@
 <style>
     /* CONTENT */
     #content {
+        margin-top: 30px;
         padding-top: 10px;
         margin-bottom: 120px;
+        max-width: 95%;
     }
 
     #content h1 {
@@ -157,7 +169,7 @@
         border-radius: 5px;
         margin-top: 12px;
         margin-bottom: 12px;
-        width: 85%;
+        width: 100%;
     }
 
     #content .callout .callout-icon {
@@ -271,7 +283,7 @@
     }
 
     #content table {
-        width: 85%;
+        width: 100%;
         border-collapse: collapse; border-spacing: 0;
     }
 

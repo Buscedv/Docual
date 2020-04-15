@@ -54,6 +54,7 @@
 <style scoped>
     main {
         height: 100vh;
+        width: 100%;
     }
 
     #doc-area {
@@ -68,6 +69,12 @@
         max-width: available;
         height: 100%;
         padding: 0;
+        width: 100%;
+    }
+
+    #sidebar * {
+        width: inherit;
+        height: 100%;
     }
 
     .fade {

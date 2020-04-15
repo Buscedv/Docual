@@ -2,27 +2,23 @@
     <aside>
         <div class="sidebar">
             <div class="header">
-                <a class="sidebar-btn-c" @click="isSearch = true" v-if="!isSearch"><font-awesome-icon icon="search"/></a>
-                <a class="sidebar-btn-c" @click="isSearch = false" v-if="isSearch"><font-awesome-icon icon="times"/></a>
+                <a class="sidebar-btn-c" @click="isSearch = true; search = ''" v-if="!isSearch"><font-awesome-icon icon="search"/></a>
+                <a class="sidebar-btn-c" @click="isSearch = false; search = ''" v-if="isSearch"><font-awesome-icon icon="times"/></a>
                 <a class="sidebar-btn">Home</a>
             </div>
-            <div class="sidebar-items" v-if="!isSearch">
-                <span v-for="(link, index) in links" :key="index" class="sidebar-item">
+            <div class="sidebar-search" v-if="isSearch">
+                <input type="search" placeholder="Search..." v-model="search">
+            </div>
+            <div id="no-results" v-if="noResults">
+                    <img src="../assets/img/no_results.png" alt="no results">
+            </div>
+            <div class="sidebar-items" v-if="shouldShowItems">
+                <span v-for="(link, index) in filteredLinks" :key="index" class="sidebar-item">
                     <a class="sidebar-link" @click="smoothScroll(link.link)" v-text="link.title" v-if="link.type === 'H1'"></a>
                     <div class="sidebar-link sidebar-sub-items" v-else>
                         <a class="sidebar-link sidebar-link-sub" @click="smoothScroll(link.link)" v-text="link.title"></a>
                     </div>
                 </span>
-            </div>
-            <div class="sidebar-search" v-if="isSearch">
-                <input type="text" placeholder="Search..." v-model="search">
-                <div id="no-results">
-                    <img src="../assets/img/no_results.png" alt="no results">
-                </div>
-                <div id="results">
-                    <a class="sidebar-link search-result">Link 1</a>
-                    <a class="sidebar-link search-result">Link 1</a>
-                </div>
             </div>
         </div>
     </aside>
@@ -43,6 +39,30 @@
                 document.querySelector(id).scrollIntoView({block: 'center'})
             },
         },
+        computed: {
+            filteredLinks() {
+                return this.links.filter(link => {
+                    return link.text.toLowerCase().includes(this.search.toLowerCase())
+                })
+            },
+            noResults() {
+                if (!this.isSearch) {
+                    return false;
+                }
+                if (this.filteredLinks.length === 0 || this.filteredLinks.length === this.links.length) {
+                    return true;
+                }
+
+                return false;
+            },
+            shouldShowItems() {
+                if (this.isSearch && this.noResults) {
+                    return false;
+                }
+
+                return true;
+            },
+        },
     }
 </script>
 
@@ -51,7 +71,6 @@
         height: 100%;
         background-color: var(--light);
         position: fixed;
-        width: inherit;
         max-width: inherit;
     }
 
@@ -69,8 +88,8 @@
     }
 
     .header {
-        margin-top: 70px;
-        padding-top: 30px;
+        margin-top: 60px;
+        padding-top: 10px;
         width: 100%;
         margin-bottom: 20px;
         padding-bottom: 20px;
@@ -94,7 +113,7 @@
     .sidebar-link {
         font-size: 1.1em;
         color: var(--dark);
-        width: 90%;
+        width: 100%;
         float: left;
         border-left: 2px solid var(--accent);
         padding-left: 8px;
@@ -158,15 +177,14 @@
     }
 
     .sidebar-search {
-        height: 100%;
         width: 100%;
         text-align: center;
     }
 
     .sidebar-search input {
-        width: 90%;
+        width: 100%;
         padding: 10px;
-        background-color: #fff;
+        background-color: var(--white);
         border: 1px solid var(--light-hover);
         border-radius: 10px;
         font-size: 1.1em;
@@ -184,9 +202,5 @@
         height: 100px;
         margin-left: auto;
         margin-right: auto;
-    }
-
-    .search-result {
-        text-align: left;
     }
 </style>
