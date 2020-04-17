@@ -74,18 +74,18 @@
                                 title: node.textContent,
                                 link: '#' + node.id,
                                 type: node.nodeName,
-                                text: '',
+                                text: node.textContent,
                             });
 
                             if (this.sidebarLinks.length >= 2) {
-                                this.sidebarLinks[this.sidebarLinks.length - 2].text = tmpText;
+                                this.sidebarLinks[this.sidebarLinks.length - 2].text += tmpText;
                                 tmpText = '';
                             }
 
                             this.doc.push(node);
                         } else {
                             this.doc.push(node);
-                            tmpText = node.textContent;
+                            tmpText += node.textContent;
                         }
                     }
                 }
@@ -118,6 +118,10 @@
         padding-top: 10px;
         margin-bottom: 120px;
         max-width: 95%;
+    }
+
+    #content h1, #content h2 {
+        border-bottom: 2px solid var(--white);
     }
 
     #content h1 {
@@ -306,6 +310,10 @@
 
     .meta {
         display: none;
+    }
+
+    .activeScrollTo {
+        border-color: var(--accent) !important;
     }
 
     @media screen and (max-width: 500px) {

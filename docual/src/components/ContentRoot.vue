@@ -4,7 +4,7 @@
             <div class="col-md-3 col-xs-7" v-if="sidebarStatus" id="sidebar">
                 <Sidebar :links="links"></Sidebar>
             </div>
-            <div class="col-md-9" :class="(!sidebarStatus) ? 'col-xs-12' :  (!isMobile) ? 'col-xs-5' : 'col-xs-5 fade'" id="doc-area" @click="docClicked()">
+            <div class="col-md-9 col-xs-12" :class="(isMobile && sidebarStatus) ? 'fade' : ''" id="doc-area" @click="docClicked()">
                 <Doc @sidebarLinks="sidebarLinks"></Doc>
             </div>
         </div>
@@ -78,7 +78,7 @@
     }
 
     .fade {
-        opacity: 20%;
+        opacity: 50%;
     }
 
 </style>

@@ -5,30 +5,23 @@
 </template>
 
 <script>
+    import './static/colors.css'
     import './assets/css/flexboxgrid.min.css'
     import Index from "./views/Index";
+
+    import config from './assets/config.json';
 
     export default {
         name: 'App',
         components: {Index},
+        mounted() {
+            document.title = config.title;
+        }
     }
 </script>
 
 <style>
     @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-
-    :root {
-        --light: #eff2f5;
-        --dark: #2f2f2f;
-        --almost-dark: #3f3f3f;
-        --light-dark: #666;
-        --accent: #5A8CFF;
-        --accent-hover: #497BEE;
-        --white: #fff;
-        --medium: #1c2023;
-        --medium-two: #3e4145;
-        --light-hover: rgba(224, 230, 235, 0.4);
-    }
 
     body {
         font-family: 'Roboto', sans-serif;

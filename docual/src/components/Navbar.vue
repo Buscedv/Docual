@@ -11,11 +11,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9" id="links">
+            <div class="col-md-7" id="links">
                 <div class="row navbar-row">
-                    <a class="nav-item" href="#">Home</a>
-                    <a class="nav-item" href="#">GitHub</a>
-                    <a class="nav-item" href="#">Contact</a>
+                    <a v-for="(link, index) in navbarLinks" :key="index" class="nav-item" :href="link.link" v-text="link.title"></a>
+                </div>
+            </div>
+            <div class="col-md-2" id="icons">
+                <div class="row navbar-row">
+                    <a v-for="(icon, index) in navbarIcons" :key="index" class="nav-item navbar-icon" :href="icon.link"><font-awesome-icon :icon="icon.icon"/></a>
                 </div>
             </div>
         </div>
@@ -23,12 +26,25 @@
 </template>
 
 <script>
+    import config from '../assets/config.json';
+
     export default {
         name: 'Navbar',
+        data() {
+            return {
+                navbarLinks: [],
+                navbarIcons: [],
+            }
+        },
         methods: {
             goHome() {
                 window.location.href = '/';
             },
+        },
+        mounted() {
+            this.navbarLinks = config.navLinks;
+            this.navbarIcons = config.navIcons;
+
         },
     }
 </script>
@@ -101,8 +117,13 @@
         color: var(--dark);
     }
 
+    .navbar-icon {
+        margin-left: auto;
+        color: var(--almost-dark);
+    }
+
     @media screen and (max-width: 1025px){
-        #links {
+        #links, #icons {
             display: none;
         }
 

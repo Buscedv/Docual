@@ -4,7 +4,7 @@
             <div class="header">
                 <a class="sidebar-btn-c" @click="isSearch = true; search = ''" v-if="!isSearch"><font-awesome-icon icon="search"/></a>
                 <a class="sidebar-btn-c" @click="isSearch = false; search = ''" v-if="isSearch"><font-awesome-icon icon="times"/></a>
-                <a class="sidebar-btn">Home</a>
+                <a class="sidebar-btn" @click="smoothScroll(filteredLinks[0].link)">Home</a>
             </div>
             <div class="sidebar-search" v-if="isSearch">
                 <input type="search" placeholder="Search..." v-model="search">
@@ -36,7 +36,13 @@
         },
         methods: {
             smoothScroll(id) {
-                document.querySelector(id).scrollIntoView({block: 'center'})
+                document.querySelector(id).scrollIntoView({block: 'center'});
+
+                const actives = document.querySelectorAll('.activeScrollTo')
+                for (let i = 0; i < actives.length; i++) {
+                    actives[i].classList.remove('activeScrollTo')
+                }
+                document.querySelector(id).classList.add('activeScrollTo')
             },
         },
         computed: {
@@ -72,11 +78,12 @@
         background-color: var(--light);
         position: fixed;
         max-width: inherit;
+        z-index: 98;
     }
 
     .sidebar {
         max-width: 100%;
-        border-right: 2px solid var(--light);
+        border-right: 2px solid var(--light-hover);
         padding: 25px;
         overflow-y: auto;
         height: inherit;
@@ -84,7 +91,8 @@
 
     .sidebar-items, .sidebar-sub-items {
         height: fit-content;
-        margin-bottom: 25px !important;
+        margin-top: 10px;
+        margin-bottom: 10px !important;
     }
 
     .header {
