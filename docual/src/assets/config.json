@@ -1,0 +1,20 @@
+{
+    "title": "Docual - Home",
+    "readmeLink": "https://raw.githubusercontent.com/Docual/Docual/master/README.md",
+    "navLinks": [
+        {
+            "title": "Home",
+            "link": "https://docual.edvard.io"
+        },
+        {
+            "title": "other",
+            "link": ""
+        }
+    ],
+    "navIcons": [
+        {
+            "icon": ["fab", "github"],
+            "link": "github.com"
+        }
+    ]
+}
