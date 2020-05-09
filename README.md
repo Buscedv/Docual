@@ -19,4 +19,4 @@
 - [GitHub](https://github.com/Docual)
 - [Email](mailto:docual@edvard.io)
 
-Edvard Busck-Nielsen, Docual 20120- This page is powered by [Docual](https://docual.edvard.io) & GitHub Pages.
+Edvard Busck-Nielsen, Docual 2020.
