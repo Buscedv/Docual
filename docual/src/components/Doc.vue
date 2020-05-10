@@ -200,7 +200,7 @@
         padding: 10px;
         font-size: 16px;
         background-color: var(--code-bg);
-        color: var(--medium);
+        color: var(--light);
         border-radius: 5px;
         display: flex;
         align-items: center;
