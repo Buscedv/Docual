@@ -2,7 +2,7 @@
     <main>
         <div class="row">
             <div class="col-md-3 col-xs-7" v-if="sidebarStatus" id="sidebar">
-                <Sidebar :links="links"></Sidebar>
+                <Sidebar :links="links" :isMobile="isMobile"></Sidebar>
             </div>
             <div class="col-md-9 col-xs-12" :class="(isMobile && sidebarStatus) ? 'fade' : ''" id="doc-area" @click="docClicked()">
                 <Doc @sidebarLinks="sidebarLinks"></Doc>

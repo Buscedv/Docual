@@ -2,8 +2,8 @@
     <aside>
         <div class="sidebar">
             <div class="header">
-                <a class="sidebar-btn-c" @click="toggleSearch" v-if="!isSearch"><font-awesome-icon icon="search"/></a>
-                <a class="sidebar-btn-c" @click="toggleSearch" v-if="isSearch"><font-awesome-icon icon="times"/></a>
+                <a class="sidebar-btn-c" @click="toggleSearch" v-if="!isSearch" v-show="!isMobile"><font-awesome-icon icon="search"/></a>
+                <a class="sidebar-btn-c" @click="toggleSearch" v-if="isSearch"><font-awesome-icon icon="arrow-left"/></a>
                 <a class="sidebar-btn" @click="smoothScroll(filteredLinks[0].link)" v-text="homeBtnText"></a>
             </div>
             <div class="sidebar-search" v-if="isSearch">
@@ -29,7 +29,7 @@
 
     export default {
         name: 'Sidebar',
-        props: ['links'],
+        props: ['links', 'isMobile'],
         data() {
             return {
                 isSearch: false,
@@ -66,6 +66,7 @@
                 if (!this.isSearch) {
                     return false;
                 }
+
                 if (this.filteredLinks.length === 0 || this.filteredLinks.length === this.links.length) {
                     return true;
                 }
@@ -106,8 +107,8 @@
 
     .sidebar-items, .sidebar-sub-items {
         height: fit-content;
-        margin-top: 10px;
-        margin-bottom: 10px !important;
+        margin-top: 0;
+        margin-bottom: 20px !important;
     }
 
     .header {
