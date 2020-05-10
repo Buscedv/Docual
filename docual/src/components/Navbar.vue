@@ -26,7 +26,7 @@
 </template>
 
 <script>
-    import config from '../assets/config.json';
+    import config from '../../public/config.json';
 
     export default {
         name: 'Navbar',

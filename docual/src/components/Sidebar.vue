@@ -2,12 +2,12 @@
     <aside>
         <div class="sidebar">
             <div class="header">
-                <a class="sidebar-btn-c" @click="isSearch = true; search = ''" v-if="!isSearch"><font-awesome-icon icon="search"/></a>
-                <a class="sidebar-btn-c" @click="isSearch = false; search = ''" v-if="isSearch"><font-awesome-icon icon="times"/></a>
-                <a class="sidebar-btn" @click="smoothScroll(filteredLinks[0].link)">Home</a>
+                <a class="sidebar-btn-c" @click="toggleSearch" v-if="!isSearch"><font-awesome-icon icon="search"/></a>
+                <a class="sidebar-btn-c" @click="toggleSearch" v-if="isSearch"><font-awesome-icon icon="times"/></a>
+                <a class="sidebar-btn" @click="smoothScroll(filteredLinks[0].link)" v-text="homeBtnText"></a>
             </div>
             <div class="sidebar-search" v-if="isSearch">
-                <input type="search" placeholder="Search..." v-model="search">
+                <input type="search" :placeholder="searchHint" v-model="search" ref="searchBox">
             </div>
             <div id="no-results" v-if="noResults">
                     <img src="../assets/img/no_results.png" alt="no results">
@@ -25,6 +25,8 @@
 </template>
 
 <script>
+    import config from '../../public/config.json';
+
     export default {
         name: 'Sidebar',
         props: ['links'],
@@ -32,9 +34,18 @@
             return {
                 isSearch: false,
                 search: '',
+                homeBtnText: '',
+                searchHint: '',
             }
         },
         methods: {
+            toggleSearch() {
+                this.isSearch = !this.isSearch;
+                this.search = '';
+                this.$nextTick(() => {
+                    this.$refs.searchBox.focus()
+                })
+            },
             smoothScroll(id) {
                 document.querySelector(id).scrollIntoView({block: 'center'});
 
@@ -69,6 +80,10 @@
                 return true;
             },
         },
+        mounted() {
+            this.searchHint = config.searchHint;
+            this.homeBtnText = config.homeBtnText;
+        }
     }
 </script>
 

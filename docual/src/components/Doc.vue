@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import configFile from '../assets/config.json';
+    import config from '../../public/config.json';
 
     export default {
         name: 'Doc',
@@ -26,7 +26,7 @@
         },
         methods: {
             loadConfig() {
-                this.config = configFile;
+                this.config = config;
             },
             fetchData: function () {
                 let comp = this;
@@ -199,7 +199,7 @@
     #content pre {
         padding: 10px;
         font-size: 16px;
-        background-color: var(--light);
+        background-color: var(--code-bg);
         color: var(--medium);
         border-radius: 5px;
         display: flex;

@@ -16,5 +16,7 @@
             "icon": ["fab", "github"],
             "link": "github.com"
         }
-    ]
+    ],
+    "searchHint": "Search...",
+    "homeBtnText": "Home"
 }

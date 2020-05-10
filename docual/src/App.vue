@@ -5,11 +5,11 @@
 </template>
 
 <script>
-    import './static/colors.css'
+    import '../public/colors.css'
     import './assets/css/flexboxgrid.min.css'
     import Index from "./views/Index";
 
-    import config from './assets/config.json';
+    import config from '../public/config.json';
 
     export default {
         name: 'App',
@@ -21,7 +21,7 @@
 </script>
 
 <style>
-    @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Roboto|Open+Sans&display=swap');
 
     body {
         font-family: 'Roboto', sans-serif;
@@ -29,6 +29,7 @@
         margin: 0;
         height: 100vh;
         width: 100%;
+        background: var(--white);
     }
 
     #app {
