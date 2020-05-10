@@ -213,6 +213,11 @@
         height: 100%;
     }
 
+    #content p code {
+        background-color: var(--light);
+        padding: 5px;
+    }
+
     #content ul, #content ol {
         padding-inline-start: 0;
     }

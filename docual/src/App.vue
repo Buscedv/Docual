@@ -21,7 +21,7 @@
 </script>
 
 <style>
-    @import url('https://fonts.googleapis.com/css?family=Roboto|Open+Sans&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Roboto|Open+Sans|Roboto+Mono&display=swap');
 
     body {
         font-family: 'Roboto', sans-serif;
@@ -46,6 +46,10 @@
 
     ::-webkit-scrollbar {
         width: 0;
+    }
+
+    code, pre {
+        font-family: 'Roboto Mono', monospace;
     }
 
     /** {*/
