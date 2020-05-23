@@ -8,7 +8,7 @@ The programming language "Enkelt" keeps their documentation in a GitHub wiki and
 
 # Get Started
 ## Download
-CLone this repo
+Clone this repo
 ## Setup
 Configure the site from the config file found in the */public* folder, or change the source of the site. Docual is powered by Vue.js.
 ## Launch!
