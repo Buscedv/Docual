@@ -6,12 +6,12 @@ A self hosted frontend for markdown files (ex. GitHub READMEs). Docual picks out
 Docual is perfect for documentation and informative content. It takes 5 minutes to setup and updates whenever you update the source markdown file wich can be stored anyware (as long as Docual can access it).
 ## Examples
 The programming language "Enkelt" keeps their documentation in a GitHub wiki and uses Docual as a frontend layer.
-[Check it out here!](https://dokumentation.enkelt.io), the page is in Swedish.
+[Check it out here](https://dokumentation.enkelt.io)!, the page is in Swedish.
 
 # Get Started
 ## 1
 Clone this repo
-Copy the "Docual folder" and paste it somewhere else.
+Copy the "Docual" folder and paste it somewhere else.
 ## 2
 Configure the site from the config file found in the */public* folder, or change the source of the site. Docual is powered by Vue.js.
 ## 3
