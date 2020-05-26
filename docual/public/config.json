@@ -1,20 +1,16 @@
 {
     "title": "Docual - Home",
-    "readmeLink": "https://raw.githubusercontent.com/Docual/Docual/master/README.md",
+    "readmeLink": "https://raw.githubusercontent.com/Buscedv/Docual/master/README.md",
     "navLinks": [
         {
             "title": "Home",
-            "link": "https://docual.edvard.io"
+            "link": "https://docual.edvard.dev"
         },
-        {
-            "title": "other",
-            "link": ""
-        }
     ],
     "navIcons": [
         {
             "icon": ["fab", "github"],
-            "link": "github.com"
+            "link": "https://github.com/Buscedv/Docual"
         }
     ],
     "searchHint": "Search...",
