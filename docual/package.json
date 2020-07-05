@@ -13,7 +13,8 @@
     "@fortawesome/vue-fontawesome": "^0.1.9",
     "core-js": "^3.6.4",
     "showdown": "^1.9.1",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "websocket-extensions": "^0.1.4"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.13.0",
