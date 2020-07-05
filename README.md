@@ -11,7 +11,7 @@ The programming language "Enkelt" keeps their documentation in a GitHub wiki and
 # Get Started
 ## 1
 Clone this repo
-Copy the "Docual" folder and paste it somewhere else.
+Copy the "docual" folder and paste it somewhere else.
 ## 2
 Configure the site from the config file found in the */public* folder, or change the source of the site. Docual is powered by Vue.js.
 ## 3
