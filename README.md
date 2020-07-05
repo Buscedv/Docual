@@ -13,7 +13,7 @@ The programming language "Enkelt" keeps their documentation in a GitHub wiki and
 Clone this repo
 Copy the "docual" folder and paste it somewhere else.
 ## 2
-Configure the site from the config file found in the */public* folder, or change the source of the site. Docual is powered by Vue.js.
+Configure the site from the config files found in the */public* folder (`config.json` and `colors.css`), or change the source of the site. Docual is powered by Vue.js.
 ## (2b)
 You can test your site locally by first running `npm install` and then `npm run serve`, which will start a local server on (default) `http://localhost:8080`.
 ## 3
